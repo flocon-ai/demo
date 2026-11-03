@@ -1,3 +1,5 @@
-export default function Home() {
-  return <div className="flex"></div>;
+import { redirect } from "next/navigation"
+
+export default function Root() {
+  redirect("/en")
 }

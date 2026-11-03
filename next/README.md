@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Flocon AI + Next.js demo
 
-## Getting Started
+A tiny Next.js website that shows [Flocon AI](https://flocon-ai.com) pages with [`@flocon-ai/next`](https://www.npmjs.com/package/@flocon-ai/next).
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
+echo "FLOCON_TOKEN=<your website token>" > .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Get the token from [flocon-ai.com/app/tokens](https://flocon-ai.com/app/tokens). Never commit it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then open [localhost:3000](http://localhost:3000). It redirects to `/en`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## The files
 
-## Learn More
+| File | What |
+| --- | --- |
+| `src/flocon.ts` | Your URL rule: `/<locale><path>` |
+| `src/app/page.tsx` | `/` redirects to `/en` |
+| `src/app/[locale]/[[...slugs]]/page.tsx` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about` |
+| `src/app/sitemap.ts` | `/sitemap.xml` |
+| `src/app/llms.txt/route.ts` | `/llms.txt` |
 
-To learn more about Next.js, take a look at the following resources:
+Every page is a Flocon page, made through the MCP server. No i18n lib: the `[locale]` part of the URL goes to Flocon as is.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+In production, set `SITE_URL` (like `https://demo.example.com`) and `FLOCON_TOKEN` in your host.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Docs: [flocon-ai.com/docs/nextjs/install](https://flocon-ai.com/docs/nextjs/install)
