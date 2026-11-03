@@ -20,8 +20,7 @@ Then open [localhost:3000](http://localhost:3000). It redirects to `/en`.
 | --- | --- |
 | `src/flocon.ts` | Your URL rule: `/<locale><path>` |
 | `src/app/page.tsx` | `/` redirects to `/en` |
-| `src/app/[locale]/page.tsx` | Home (`/en`): the Flocon page `/home` |
-| `src/app/[locale]/[...slugs]/page.tsx` | Any other Flocon page (`/en/about`) |
+| `src/app/[locale]/[[...slugs]]/page.tsx` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about` |
 | `src/app/sitemap.ts` | `/sitemap.xml` |
 | `src/app/llms.txt/route.ts` | `/llms.txt` |
 
