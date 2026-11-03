@@ -1,0 +1,24 @@
+---
+// Every Flocon page: /en = page "/", /en/about = page "/about"
+import FloconPage from "@flocon-ai/astro/FloconPage.astro"
+import { getFloconPage, getFloconMetadata } from "@flocon-ai/astro"
+import { url } from "../../flocon"
+
+const { locale, slugs } = Astro.params
+const data = await getFloconPage({ locale, path: "/" + (slugs ?? "") })
+if (!data) return new Response(null, { status: 404 })
+const meta = getFloconMetadata({ data, url })
+---
+
+<html lang={data.page.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{meta.title}</title>
+    {meta.meta.map((m) => <meta {...m} />)}
+    {meta.links.map((l) => <link {...l} />)}
+  </head>
+  <body>
+    <FloconPage data={data} url={url} />
+  </body>
+</html>
