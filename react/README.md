@@ -20,10 +20,11 @@ Then open [localhost:5173](http://localhost:5173). It redirects to `/en`.
 
 | File | What |
 | --- | --- |
-| `app/flocon.ts` | Your URL rule: `/<locale><path>` |
+| `app/flocon.ts` | Your URL rule: `/<locale><path>` + `buildNav()`: groups pages by the first part of the path |
+| `app/site.css` | Header + footer style |
 | `app/routes.ts` | The 4 routes |
 | `app/routes/home.ts` | `/` redirects to `/en` |
-| `app/routes/flocon.tsx` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about` |
+| `app/routes/flocon.tsx` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about`. Header + footer, links from `getAllPages()` |
 | `app/routes/sitemap.ts` | `/sitemap.xml` |
 | `app/routes/llms.ts` | `/llms.txt` |
 | `vite.config.ts` | Loads `.env` into `process.env` (the lib reads the token there) |

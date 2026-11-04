@@ -1,13 +1,16 @@
 ---
 // Every Flocon page: /en = page "/", /en/about = page "/about"
 import FloconPage from "@flocon-ai/astro/FloconPage.astro"
-import { getFloconPage, getFloconMetadata } from "@flocon-ai/astro"
-import { url } from "../../flocon"
+import { getAllPages, getFloconPage, getFloconMetadata } from "@flocon-ai/astro"
+import { buildNav, href, url } from "../../flocon"
+import "../../site.css"
 
 const { locale, slugs } = Astro.params
 const data = await getFloconPage({ locale, path: "/" + (slugs ?? "") })
 if (!data) return new Response(null, { status: 404 })
 const meta = getFloconMetadata({ data, url })
+// Header + footer links, built from your published pages
+const nav = buildNav(await getAllPages(), data.page.locale)
 ---
 
 <html lang={data.page.locale}>
@@ -19,6 +22,32 @@ const meta = getFloconMetadata({ data, url })
     {meta.links.map((l) => <link {...l} />)}
   </head>
   <body>
-    <FloconPage data={data} url={url} />
+    <header class="site-header">
+      <a class="logo" href={`/${data.page.locale}`}>Flocon AI demo</a>
+      {nav.links.map((page) => <a href={href(page)}>{page.title}</a>)}
+      {nav.groups.map((group) => (
+        <details>
+          <summary>{group.label}</summary>
+          <ul>{group.pages.map((page) => <li><a href={href(page)}>{page.title}</a></li>)}</ul>
+        </details>
+      ))}
+    </header>
+
+    <main>
+      <FloconPage data={data} url={url} />
+    </main>
+
+    <footer class="site-footer">
+      {nav.groups.map((group) => (
+        <section>
+          <h2>{group.label}</h2>
+          <ul>{group.pages.map((page) => <li><a href={href(page)}>{page.title}</a></li>)}</ul>
+        </section>
+      ))}
+      <section>
+        <h2>Pages</h2>
+        <ul>{nav.links.map((page) => <li><a href={href(page)}>{page.title}</a></li>)}</ul>
+      </section>
+    </footer>
   </body>
 </html>

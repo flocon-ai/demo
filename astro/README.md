@@ -19,9 +19,10 @@ Then open [localhost:4321](http://localhost:4321). It redirects to `/en`.
 | File | What |
 | --- | --- |
 | `astro.config.mjs` | SSR (`output: "server"`) + Node adapter |
-| `src/flocon.ts` | Your URL rule: `/<locale><path>` |
+| `src/flocon.ts` | Your URL rule: `/<locale><path>` + `buildNav()`: groups pages by the first part of the path |
+| `src/site.css` | Header + footer style |
 | `src/pages/index.astro` | `/` redirects to `/en` |
-| `src/pages/[locale]/[...slugs].astro` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about` |
+| `src/pages/[locale]/[...slugs].astro` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about`. Header + footer, links from `getAllPages()` |
 | `src/pages/sitemap.xml.ts` | `/sitemap.xml` |
 | `src/pages/llms.txt.ts` | `/llms.txt` |
 

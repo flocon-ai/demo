@@ -1,4 +1,5 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, useParams } from "react-router"
+import "./site.css"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { locale } = useParams()

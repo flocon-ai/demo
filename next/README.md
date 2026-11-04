@@ -18,7 +18,8 @@ Then open [localhost:3000](http://localhost:3000). It redirects to `/en`.
 
 | File | What |
 | --- | --- |
-| `src/flocon.ts` | Your URL rule: `/<locale><path>` |
+| `src/flocon.ts` | Your URL rule: `/<locale><path>` + `buildNav()`: groups pages by the first part of the path |
+| `src/app/[locale]/layout.tsx` | Header + footer, links from `getAllPages()` |
 | `src/app/page.tsx` | `/` redirects to `/en` |
 | `src/app/[locale]/[[...slugs]]/page.tsx` | Every Flocon page: `/en` = page `/`, `/en/about` = page `/about` |
 | `src/app/sitemap.ts` | `/sitemap.xml` |

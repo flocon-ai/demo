@@ -1,0 +1,40 @@
+/* Header + footer. Plain CSS, works in light and dark (built from the text color). */
+.site-header,
+.site-footer {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+.site-header { align-items: center; border-bottom: 1px solid color-mix(in oklab, currentColor 15%, transparent); }
+.site-footer { margin-top: 3rem; border-top: 1px solid color-mix(in oklab, currentColor 15%, transparent); font-size: 0.875rem; }
+.site-header a,
+.site-footer a { color: inherit; text-decoration: none; }
+.site-header a:hover,
+.site-footer a:hover { text-decoration: underline; }
+.site-header .logo { font-weight: 700; margin-right: auto; }
+
+/* Group = a dropdown with no JavaScript (<details>) */
+.site-header details { position: relative; }
+.site-header summary { cursor: pointer; }
+.site-header details ul {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  min-width: 14rem;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  list-style: none;
+  background: var(--background, Canvas);
+  border: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+  border-radius: 0.5rem;
+}
+.site-header details li { padding: 0.25rem 0; }
+
+/* Footer = every page, by group (good for crawling) */
+.site-footer section { min-width: 10rem; }
+.site-footer h2 { font-size: inherit; margin: 0 0 0.5rem; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { padding: 0.15rem 0; }

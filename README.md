@@ -18,6 +18,7 @@ Each one is as small as possible. Pick yours and follow its README.
 
 - `/` redirects to `/en`.
 - `/<locale>/<path>` shows the Flocon page (home page included).
+- A header and a footer, built from your published pages: `/about` is a link, `/vs/*` pages become a "Comparisons" dropdown. Publish a page with your AI and it shows up in the nav, with no code change.
 - `/sitemap.xml` and `/llms.txt` list your published pages.
 - No i18n lib: the locale in the URL goes to Flocon as is.
 
