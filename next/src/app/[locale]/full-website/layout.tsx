@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { Figtree } from "next/font/google"
 import { fullWebsiteUrl } from "@/flocon"
-import { getLocales, getNav, getPages, label, t } from "../nav"
-import { Snowflake } from "../snowflake"
-import "../full-website.css"
+import { getLocales, getNav, getPages, label, t } from "./nav"
+import { Snowflake } from "./snowflake"
+import "./full-website.css"
 
 const figtree = Figtree({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-figtree" })
 

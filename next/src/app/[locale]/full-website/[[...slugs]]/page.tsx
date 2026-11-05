@@ -2,16 +2,16 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { FloconPage, getFloconMetadata } from "@flocon-ai/next"
 import { fullWebsiteUrl, url } from "@/flocon"
-import { getPages, groupLabel } from "../../nav"
+import { getPages, groupLabel } from "../nav"
 
 export const dynamic = "force-dynamic"
 
 type Props = { params: Promise<{ locale: string; slugs?: string[] }> }
 
-// /full-website/en → "/" (home), /full-website/en/about → "/about"
+// /en/full-website → "/" (home), /en/full-website/about → "/about"
 const toPath = (slugs: string[] = []) => "/" + slugs.join("/")
 
-// A folder with no Flocon page of its own (e.g. /vs) = a hub: the list of its pages.
+// A folder with no Flocon page of its own (e.g. /en/full-website/vs) = a hub: the list of its pages.
 async function hubPages(locale: string, path: string) {
   const pages = await getPages(locale)
   if (pages.some((p) => p.path === path)) return null
