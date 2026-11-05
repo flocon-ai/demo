@@ -4,3 +4,7 @@ const SITE_URL = process.env.SITE_URL ?? "http://localhost:3000"
 
 export const url = ({ locale, path }: { locale: string; path: string }) =>
   `${SITE_URL}/${locale}${path === "/" ? "" : path}`
+
+// The same pages under /full-website (header, nav, footer around them).
+export const fullWebsiteUrl = ({ locale, path }: { locale: string; path: string }) =>
+  `/full-website/${locale}${path === "/" ? "" : path}`
