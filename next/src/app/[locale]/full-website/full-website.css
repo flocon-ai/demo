@@ -1,0 +1,99 @@
+/* Flocon AI look for /full-website only. Scoped under .fw: the /<locale> pages keep their plain look.
+   The Flocon page component reads these shadcn variables (--primary, --border…) on its own. */
+.fw {
+  --background: #f9fbfc;
+  --foreground: #121a24;
+  --card: #ffffff;
+  --primary: #1e6ebe;
+  --primary-hover: #185a9c;
+  --muted: #f3f6f9;
+  --muted-foreground: #566373;
+  --border: #e4e9ef;
+  --brand-soft: #eff6fd;
+  --radius: 14px;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fw {
+    --background: #0a0f15;
+    --foreground: #e8eef4;
+    --card: #10171f;
+    --primary: #6cb2f0;
+    --primary-hover: #8ec4f4;
+    --muted: #151e28;
+    --muted-foreground: #98a6b5;
+    --border: #212c38;
+    --brand-soft: #132a40;
+  }
+}
+
+.fw a { color: var(--primary); text-underline-offset: 3px; }
+.fw a:hover { color: var(--primary-hover); }
+
+.fw-container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; box-sizing: border-box; }
+
+/* Header */
+.fw-header {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in oklab, var(--background) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.fw-header-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
+.fw .fw-logo { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.05rem; color: var(--foreground); text-decoration: none; }
+.fw .fw-logo svg { color: var(--primary); }
+.fw-nav { display: flex; align-items: center; gap: .25rem; flex-wrap: wrap; }
+.fw .fw-nav > a, .fw-group > summary {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 .75rem;
+  border-radius: 10px; color: var(--muted-foreground); text-decoration: none; font-weight: 500; cursor: pointer;
+}
+.fw .fw-nav > a:hover, .fw-group > summary:hover, .fw-group[open] > summary { background: var(--muted); color: var(--foreground); }
+
+/* Dropdown (no JavaScript: <details>) */
+.fw-group { position: relative; }
+.fw-group > summary { list-style: none; }
+.fw-group > summary::-webkit-details-marker { display: none; }
+.fw-group > summary::after { content: "▾"; margin-left: .35rem; font-size: .8em; }
+.fw-menu {
+  position: absolute; right: 0; top: calc(100% + 6px); min-width: 240px; padding: .4rem;
+  display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: 0 2px 4px rgb(18 26 36 / .04), 0 8px 20px rgb(18 26 36 / .08);
+}
+.fw .fw-menu a { padding: .5rem .75rem; border-radius: 8px; color: var(--foreground); text-decoration: none; }
+.fw .fw-menu a:hover { background: var(--muted); }
+.fw .fw-menu .fw-see-all { color: var(--primary); font-weight: 600; border-top: 1px solid var(--border); border-radius: 0 0 8px 8px; }
+
+/* Main */
+.fw-main { flex: 1; padding: 1.5rem 0 3rem; }
+.fw-hub { max-width: 48rem; padding-top: 2rem; }
+.fw-hub h1 { font-size: 2rem; margin: 0 0 1.25rem; }
+.fw-hub ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.fw .fw-hub a { display: block; padding: .9rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); color: var(--foreground); text-decoration: none; font-weight: 500; }
+.fw .fw-hub a:hover { border-color: var(--primary); }
+
+/* Footer: every page, grouped. Helps crawling. */
+.fw-footer { border-top: 1px solid var(--border); background: var(--card); padding: 2.5rem 0 1.5rem; font-size: .9rem; }
+.fw-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
+.fw-footer h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted-foreground); margin: 0 0 .75rem; }
+.fw-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; }
+.fw .fw-footer ul a { color: var(--foreground); text-decoration: none; }
+.fw .fw-footer ul a:hover, .fw .fw-footer ul a[aria-current] { color: var(--primary); }
+.fw-footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border); color: var(--muted-foreground); }
+.fw-footer-bottom p { margin: 0; }
+.fw-footer-bottom svg { color: var(--primary); vertical-align: -3px; margin-right: .3rem; }
+
+/* Small screens: the nav goes under the logo, so menus open to the right. */
+@media (max-width: 720px) {
+  .fw-menu { left: 0; right: auto; }
+}
